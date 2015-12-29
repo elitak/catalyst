@@ -18,7 +18,7 @@ case ${1} in
 	;;
 
 #	package)
-#		export root_fs_path="${clst_chroot_path}/tmp/mergeroot"
+#		export root_fs_path="${clst_chroot_path}${clst_mergeroot}"
 #		install -d ${clst_image_path}
 
 #		${clst_shdir}/embedded/embedded-fs-runscript.sh \
@@ -50,6 +50,10 @@ case ${1} in
 		exec_in_chroot ${clst_shdir}/support/kmerge.sh
 		delete_from_chroot tmp/linuxrc
 	;;
+
+        fsscript)
+                exec_in_chroot ${clst_fsscript}
+        ;;
 
 	target_image_setup)
 		shift

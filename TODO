@@ -77,3 +77,6 @@ Targets:
     - %DISTRIBUTION%
 	- %AUTHOR%
 
+TODO put this in own github fork and formalize my fixes.
+make the build resumable. the -o and -O steps seem to repeat every time...
+snakeoil 0.6.5>=  for catalyst-9999
