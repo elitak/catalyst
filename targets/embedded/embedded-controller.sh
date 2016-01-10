@@ -14,9 +14,6 @@ case ${1} in
 			${clst_shdir}/${clst_target}/${clst_target}-chroot.sh
 	;;
 
-	preclean)
-	;;
-
 #	package)
 #		export root_fs_path="${clst_chroot_path}${clst_mergeroot}"
 #		install -d ${clst_image_path}
@@ -51,8 +48,17 @@ case ${1} in
 		delete_from_chroot tmp/linuxrc
 	;;
 
+	#rc-update)
+	#	exec_in_chroot ${clst_shdir}/support/rc-update.sh
+	#;;
+
         fsscript)
-                exec_in_chroot ${clst_fsscript}
+                # Prepend the clst_ vars in environment to the fsscript before running it in chroot.
+                tmp=`mktemp`
+                # Some vars have '-' in their names... Thanks catalyst.
+                cat <(sed -n 1p ${clst_fsscript}) <(env | grep '^clst_[^-=]+=' | sed -r "s/^([^=]+)=(.+)$/\1='\2'/") <(sed 1d ${clst_fsscript}) > "${tmp}"
+                exec_in_chroot "${tmp}"
+                rm "${tmp}"
         ;;
 
 	target_image_setup)

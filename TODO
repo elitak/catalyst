@@ -80,3 +80,4 @@ Targets:
 TODO put this in own github fork and formalize my fixes.
 make the build resumable. the -o and -O steps seem to repeat every time...
 snakeoil 0.6.5>=  for catalyst-9999
+pydecomp-9999 for catalyst-9999 but this should be narrowed down because one rebuild i did needed a new feature and required emerge -1 pydecomp to fix
